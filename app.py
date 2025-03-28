@@ -128,7 +128,7 @@ if page == "Första Bedömning":
         type_f.append(amputation_types[2])  # Append 'congenital'
     # Define the dictionaries for meeting place
     place = {
-    1: "Klinik (ForMotion)", 
+    1: "Klinik", 
     2: "Sjukhus"
     }
     # Display the available meeting places in a radio button
