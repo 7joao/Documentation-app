@@ -137,7 +137,7 @@ if page == "Första Bedömning":
     # Initialize an empty list to store the selected place
     place_f = []
     # Check the selected place and append the corresponding value
-    if answer_place == "Klinik (ForMotion)":
+    if answer_place == "Klinik":
         place_f.append(place[1])  # Append 'clinic'
     elif answer_place == "Sjukhus":
         place_f.append(place[2])  # Append 'hospital'
