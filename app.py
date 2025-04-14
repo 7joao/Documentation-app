@@ -378,7 +378,9 @@ if page == "Journal automatisering":
             response = get_patient_post_delivery_assessment(assessment_name)
             Answers_7.append((assessment_name, response))
 
+        
         # Functional tests
+        
         performed = {1:"ja", 2:"nej"}
         st.write("### Har patienten genomfört *Time Up and Go Test*?")
         answer_tug = st.radio("Vänligen välj:", options=list(performed.values()), key="tug_test")
@@ -391,6 +393,14 @@ if page == "Journal automatisering":
         if answer_four_sq == "ja":
             four_sq = st.text_input("Vänligen ange hur lång tid det tog för patienten att genomföra testet i sekunder. Så om det tog 1 minut, 30 sekunder, ange 90).", key="four_sq_input")
             four_sq_f = int(four_sq) if four_sq.isdigit() else 0  # Safe conversion
+
+        st.write("### Har patienten genomfört *100 meter walk test*?")
+        answer_100_test = st.radio("Vänligen välj:", options=list(performed.values()), key="100_test")
+        if answer_100_test == "ja":
+            meter_100 = st.text_input("Vänligen ange hur lång tid det tog för patienten att genomföra testet i sekunder. Så om det tog 1 minut, 30 sekunder, ange 90).", key="100_test_input")
+            METER_100 = int(meter_100) if meter_100.isdigit() else 0  # Safe conversion
+            if METER_100 > 0:
+             walking_speed = 100 / METER_100
 
         # reabbilitation
 
@@ -422,6 +432,9 @@ if page == "Journal automatisering":
             clinical_note += "Vid besöket kontrollerades om patienten klarade följande aktiviteter:\n"
             for report in Answers_7:
                 clinical_note += f"- {report[0]}: {report[1]}\n"
+            if answer_100_test == "ja":
+                clinical_note += f"Patienten genomförde 100 meter walking testet på {METER_100} sekunder.\n"
+                clinical_note += f"Patientens gånghastighet är {walking_speed:.2f} meter per sekund.\n"
             if answer_tug == "ja":
                 clinical_note += f"Patienten genomförde TUG-testet på {TUG_NUMBER} sekunder.\n"
                 if TUG_NUMBER > 30:
@@ -435,13 +448,17 @@ if page == "Journal automatisering":
             if answer_four_sq == "ja":
                 clinical_note += f"Patienten genomförde Four Square Step-testet på {four_sq_f} sekunder.\n"
                 if four_sq_f > 30:
-                    clinical_note += "Från Four Square Step-testet performance kan patienten klassificeras som K-nivå: 1 - Begränsad mobilitet, behöver hjälpmedel eller assistans.\n"
+                    clinical_note += ("Från Four Square Step-testet performance kan fallrisken klassificeras som hög. "
+                                      "Rekommenderas vidare utvärdering för fallförebyggande åtgärder.\n")
                 elif 20 <= four_sq_f <= 30:
-                    clinical_note += "Från Four Square Step-testet performance kan patienten klassificeras som K-nivå: 2 - Begränsad gemenskapsmobilitet.\n"
+                    clinical_note += ("Från Four Square Step-testet performance kan fallrisken bedömas som måttlig. "
+                                       "Överväg anpassningar för ökad balans och säkerhet.\n")
                 elif 15 <= four_sq_f < 20:
-                    clinical_note += "Från Four Square Step-testet performance kan patienten klassificeras som K-nivå: 3 - Gemenskapsmobilitet med varierande hastigheter.\n"
+                    clinical_note += ("Från Four Square Step-testet performance kan fallrisken bedömas som låg. "
+                                      "Fortsatt övervakning rekommenderas.\n")
                 else:
-                    clinical_note += "Från Four Square Step-testet performance kan patienten klassificeras som K-nivå: 4 - Hög mobilitet, möjlig för rekreation eller tävling.\n"
+                    clinical_note += ("Från Four Square Step-testet performance kan fallrisken bedömas som mycket låg. "
+                                      "Patienten visar god balans och stabilitet.\n")
 
             if rehab_interess == "interesserade":
                 clinical_note += f"Frågade patienten om rehabilitering vilken dem är {rehab_interess} och {answer_assistance}.\n"
