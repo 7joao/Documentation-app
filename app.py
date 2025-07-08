@@ -805,10 +805,10 @@ if language == "Svenska":
     
 
 else:  # English version
-    st.title("Welcome to the Clinical Documentation Prototype!")
-    st.write("Explore ways to optimize clinical documentation to save time for clinicians.")
-    st.write("Explore how documentation can be optimized to save time for clinicians.")
-    st.write("Explore how Patient-Reported Outcome Measures (PROMs) can be included in the treatment journey to lay the foundation for evidence-based care!")
+    st.title("Welcome to the LLCW enhancement dashblard")
+    st.write("Explore ways to optimize clinical documentation to save time, based on journal templates requested by clinicians.")
+    st.write("Explore which patient reported data clincins find useful to be collected")
+    st.write("Explore how interoperability efforts can be automated")
 
     # Sidebar - Navigation
     st.sidebar.title("Navigation")
@@ -833,6 +833,7 @@ else:  # English version
             st.write("Welcome to the page for Initial Assessment!")
             st.write("Select multiple options to create a clinical note (for instance, in this case, the first assessment after upper limb amputation).")
             st.write("The clinical note will be generated without the clinician needing to type everything manually, covering key aspects that are usually discussed. The clinician can then review and make changes if needed.")
+            st.write("In the background each option is mapped to internationally accepted medical terminology standards (ICD-10 for diagnosis and SNOMED CT for treatment) making the process automatic")
 
             # Define and display input options for amputation type, place, cognition, etc.
             amputation_types_dict = {1: "Traumatic", 2: "Congenital"}
@@ -939,7 +940,8 @@ else:  # English version
             st.title("Prosthesis Adjustment for Lower Limb")
             st.write("Select multiple options to create a clinical note.")
             st.write("The most common reasons for adjustment are listed, with the possibility of making additional selections based on the chosen option to create a complete clinical note.")
-            st.write("Depending on the main reasons for the visit, engineers will be able to write down what they did, which is easily implemented in the note.")
+            st.write("Depending on the main reasons for the visit, CPOs will be able to write down what they did, which is easily implemented in the note.")
+            st.write("Manually typed entries can be followed based on frequency of use so they can then be added as multiple choice")
 
             # Define reasons for adjustment
             adjustment_reasons = {
@@ -1176,12 +1178,11 @@ else:  # English version
     elif page == "PROM Data - English":
         st.title("Example of PROM-based Data")
         st.write("Welcome to the PROM data page!")
-        st.write("An example of how PROM-based data would be displayed.")
+        st.write("List of main patient reported data CPOs consider would be useful for tracking patients outcomes.")
         st.write("This enables quantification of treatment effects and understanding of how component changes (e.g., a new prosthetic knee joint) affect the patient's well-being.")
         st.write("This will help better justify the prescribing of components and obtaining approval for more expensive options.")
-        st.write("The information is linked to specific devices so it is easy for engineers to understand the results of each.")
-        st.write("See how patient-reported data can be used to track progress.")
-        st.write("In the future, main triggers can be added to automatically inform clinicians of patient needs (e.g., if the comfort level drops below a certain threshold, clinicians will receive a reminder to potentially contact the patient for socket manufacturing).")
+        st.write("Recommendation to link information is to specific devices so it is easy for CPOs to understand the results of each device/component change in overall well-being.")
+        st.write("In the future, triggers can be added (requested by CPOs) to automatically inform clinicians of patient needs (e.g., if the comfort level drops below a certain threshold, clinicians will receive a reminder to potentially contact the patient for socket manufacturing).")
         st.write("Data from the patient record (such as performing specific functional tests) that is entered into the record can be automatically integrated to complement patient-reported data.")
 
         # Add template selection dropdown
@@ -1503,6 +1504,7 @@ else:  # English version
 
         if device_choice == "Add New Assistive Device":
             st.write("You are now setting up a new additive unit. Please select the different component types that will be set as the base for the additive unit and will form the basis for the data we collect about it, which will be used for analysis.")
+            st.write("Main idea is that CPOs will add new devices in case of change and be able to set them as the active device so reported data gets attached to it.")
             
             socket_types = {1: "3D printed", 2: "Direct socket", 3: "Laminated"}
             socket_f = st.radio("Please choose:", options=list(socket_types.values()))
@@ -1524,8 +1526,9 @@ else:  # English version
         st.write("Welcome to the Analyzable Insights page!")
         st.write("Examples of how PROM-based data and clinical record data can be used to generate analyzable insights.")
         st.write("When clinicians use clinical templates on the first page, all options are linked to internationally accepted medical coding systems.")
-        st.write("This ensures that data from all clinics can be understood regardless of language.")
-        st.write("These insights can then be used to create treatment guidelines based on evidence from real-life situations.")
+        st.write("This ensures that data from all clinics can be understood regardless of language allowing knowledge exchange within Ottobock clinics.")
+        st.write("From it trends from patient type/delivered device can be identified and displayed to clinician (requested by CPOs). Not necessarily as clinical decision support but as additional information.")
+        st.write("For example for a new assement of TT amputee insights such as: For this patient profile the Trias foot as resulted in the best outcome for 85% patinets with similar profile, can be displayed")
 
         # Set up the seed for reproducibility (optional)
         np.random.seed(42)
