@@ -1574,7 +1574,6 @@ else:  # English version
         st.write("Included in the information is data from PROMs and from the use of templates, like the one on the first page, for creating clinical notes.")
         st.write("All options presented to clinicians when creating notes are linked to internationally accepted coding systems, making it easy to implement this system globally in all clinics.")
         st.write("The more clinics that use it, the more data is generated, making it possible to ensure that all patients receive the same type of care regardless of location.")
-        st.write("Patterns will be explored (e.g., similar cases like the one we saw with Markus, where a change in the prosthesis led to a decrease in mobility level and life quality).")
         st.write("For patterns, guidelines for care can be created, not to tell clinicians what to do, but to show them what they can expect from their choices.")
         st.write("It will be possible for clinicians to input their patient's information and see how treatment choices (such as switching knee joints) can affect multiple variables, like mobility level.")
         st.write("Documentation of expected outcomes for more expensive components will then be based on data rather than what each clinician subjectively expects.")
